@@ -43,6 +43,19 @@
       margin-bottom:20px;
     }
 
+.header {
+  position: relative;
+}
+
+.header-logo {
+  position: absolute;
+  top: 20px;
+  left: 27px;
+  width: 149px;
+  height: auto;
+  object-fit: contain;
+}
+
     .header h1{
       margin:0 0 8px;
       font-size:clamp(24px, 4vw, 34px);
@@ -277,13 +290,18 @@
 
 <body>
   <main class="page">
-    <section class="header">
-      <h1>استبيان رضا المستفيدين</h1>
-      <p>نقدّر رأيك، وستساعدنا إجاباتك على تطوير مستوى الخدمة وتحسين تجربة المستفيدين.</p>
-      <div class="intro">
-        يرجى اختيار الوجه الذي يعبّر عن مستوى رضاك عن كل عبارة.
-      </div>
-    </section>
+<section class="header">
+
+  <img src="logo.jpg" alt="الشعار" class="header-logo">
+
+  <h1>استبيان رضا المستفيدين</h1>
+  <p>نقدّر رأيك، وستساعدنا إجاباتك على تطوير مستوى الخدمة وتحسين تجربة المستفيدين.</p>
+
+  <div class="intro">
+    يرجى اختيار الوجه الذي يعبّر عن مستوى رضاك عن كل عبارة.
+  </div>
+
+</section>
 
     <form id="surveyForm"
           action="https://formsubmit.co/riyadhalebdaa@gmail.com"
