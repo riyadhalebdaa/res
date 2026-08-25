@@ -176,11 +176,20 @@
       transform:translateY(-2px);
     }
 
-    .emoji{
-      font-size:39px;
-      line-height:1;
-      filter:grayscale(.15);
-    }
+.emoji {
+  font-size: 39px;
+  line-height: 1;
+  filter: grayscale(1);
+  opacity: 0.65;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
+}
+
+/* عند اختيار الوجه: يظهر بالألوان */
+.emoji-option input:checked + label .emoji {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1);
+}
 
     .emoji-label{
       text-align:center;
@@ -306,24 +315,24 @@
         <h2 class="question-title"><span class="number">1</span> بشكل عام ما مدى رضاك عن مستوى الخدمة؟ <span class="required">*</span></h2>
         <div class="emoji-scale" role="radiogroup" aria-label="الرضا عن مستوى الخدمة">
           <div class="emoji-option">
-            <input id="q1-1" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ على الإطلاق" required>
-            <label for="q1-1"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ<br>على الإطلاق</span></label>
+            <input id="q1-1" type="radio" name="س1 - مستوى الخدمة" value="راضٍ جدًّا" required>
+            <label for="q1-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q1-2" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ">
-            <label for="q1-2"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+            <input id="q1-2" type="radio" name="س1 - مستوى الخدمة" value="راضٍ">
+            <label for="q1-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
           </div>
           <div class="emoji-option">
             <input id="q1-3" type="radio" name="س1 - مستوى الخدمة" value="محايد">
             <label for="q1-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q1-4" type="radio" name="س1 - مستوى الخدمة" value="راضٍ">
-            <label for="q1-4"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+            <input id="q1-4" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ">
+            <label for="q1-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q1-5" type="radio" name="س1 - مستوى الخدمة" value="راضٍ جدًا">
-            <label for="q1-5"><span class="emoji">😄</span><span class="emoji-label">راضٍ جدًا</span></label>
+            <input id="q1-5" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ إطلاقًا">
+            <label for="q1-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
           </div>
         </div>
       </section>
@@ -332,24 +341,24 @@
         <h2 class="question-title"><span class="number">2</span> كيف تقيّم سرعة الاستجابة لطلبك؟ <span class="required">*</span></h2>
         <div class="emoji-scale" role="radiogroup" aria-label="سرعة الاستجابة">
           <div class="emoji-option">
-            <input id="q2-1" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ على الإطلاق" required>
-            <label for="q2-1"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ<br>على الإطلاق</span></label>
+            <input id="q2-1" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ جدًّا" required>
+            <label for="q2-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q2-2" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ">
-            <label for="q2-2"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+            <input id="q2-2" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ">
+            <label for="q2-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
           </div>
           <div class="emoji-option">
             <input id="q2-3" type="radio" name="س2 - سرعة الاستجابة" value="محايد">
             <label for="q2-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q2-4" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ">
-            <label for="q2-4"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+            <input id="q2-4" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ">
+            <label for="q2-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q2-5" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ جدًا">
-            <label for="q2-5"><span class="emoji">😄</span><span class="emoji-label">راضٍ جدًا</span></label>
+            <input id="q2-5" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ إطلاقًا">
+            <label for="q2-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
           </div>
         </div>
       </section>
@@ -358,24 +367,24 @@
         <h2 class="question-title"><span class="number">3</span> كيف تقيّم جودة الخدمة المقدمة؟ <span class="required">*</span></h2>
         <div class="emoji-scale" role="radiogroup" aria-label="جودة الخدمة">
           <div class="emoji-option">
-            <input id="q3-1" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ على الإطلاق" required>
-            <label for="q3-1"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ<br>على الإطلاق</span></label>
+            <input id="q3-1" type="radio" name="س3 - جودة الخدمة" value="راضٍ جدًّا" required>
+            <label for="q3-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q3-2" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ">
-            <label for="q3-2"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+            <input id="q3-2" type="radio" name="س3 - جودة الخدمة" value="راضٍ">
+            <label for="q3-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
           </div>
           <div class="emoji-option">
             <input id="q3-3" type="radio" name="س3 - جودة الخدمة" value="محايد">
             <label for="q3-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q3-4" type="radio" name="س3 - جودة الخدمة" value="راضٍ">
-            <label for="q3-4"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+            <input id="q3-4" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ">
+            <label for="q3-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q3-5" type="radio" name="س3 - جودة الخدمة" value="راضٍ جدًا">
-            <label for="q3-5"><span class="emoji">😄</span><span class="emoji-label">راضٍ جدًا</span></label>
+            <input id="q3-5" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ إطلاقًا">
+            <label for="q3-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
           </div>
         </div>
       </section>
