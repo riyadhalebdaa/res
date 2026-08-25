@@ -35,28 +35,23 @@
     }
 
     .header{
+      position:relative;
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
-      padding:30px 28px 24px;
+      padding:30px 28px 24px 145px;
       box-shadow:var(--shadow);
       margin-bottom:20px;
     }
 
-.header {
-  position: relative;
-  padding-left: 23px;
-}
-
-.header-logo {
-  position: absolute;
-  top: 20px;
-  left: 27px;
-  padding-right: 27px;
-  width: 170px;
-  height: auto;
-  object-fit: contain;
-}
+    .header-logo{
+      position:absolute;
+      top:20px;
+      left:24px;
+      width:100px;
+      height:auto;
+      object-fit:contain;
+    }
 
     .header h1{
       margin:0 0 8px;
@@ -273,12 +268,15 @@
 
     @media (max-width:700px){
       .page{width:min(100% - 18px, 960px); margin:18px auto}
-      .header{padding-left:105px;}
-      .header-logo {
-    left: 15px;
-    width: 70px;
-  }
-      .question,.info-card{padding:18px}
+      .header,.question,.info-card{padding:18px}
+      .header{
+        padding-left:92px;
+      }
+      .header-logo{
+        top:14px;
+        left:12px;
+        width:64px;
+      }
       .info-grid{grid-template-columns:1fr}
       .emoji-scale{gap:5px;padding:10px 5px}
       .emoji-option label{min-height:84px}
@@ -299,9 +297,9 @@
   <main class="page">
 <section class="header">
 
-  <img src="logo.jpg" alt="الشعار" class="header-logo">
+    <img src="logo.jpg" alt="شعار مدارس رياض الإبداع" class="header-logo">
 
-  <h1>استبيان رضا المستفيدين</h1>
+    <h1>استبيان رضا المستفيدين</h1>
   <p>نقدّر رأيك، وستساعدنا إجاباتك على تطوير مستوى الخدمة وتحسين تجربة المستفيدين.</p>
 
   <div class="intro">
