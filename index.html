@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>استبيان رضا المستفيدين</title>
+  <meta name="description" content="استبيان رضا المستفيدين باستخدام مقياس الوجوه التعبيرية">
+  <style>
+    :root{
+      --bg:#f5f7fa;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --primary:#355c7d;
+      --primary-dark:#284861;
+      --soft:#f0f3f6;
+      --shadow:0 10px 30px rgba(31,41,55,.08);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Tahoma","Segoe UI",Arial,sans-serif;
+      line-height:1.7;
+    }
+
+    .page{
+      width:min(960px, calc(100% - 32px));
+      margin:42px auto;
+    }
+
+    .header{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:30px 28px 24px;
+      box-shadow:var(--shadow);
+      margin-bottom:20px;
+    }
+
+    .header h1{
+      margin:0 0 8px;
+      font-size:clamp(24px, 4vw, 34px);
+      font-weight:800;
+    }
+
+    .header p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .intro{
+      margin-top:18px;
+      padding:14px 16px;
+      background:var(--soft);
+      border-radius:12px;
+      color:#4b5563;
+      font-size:14px;
+    }
+
+    form{
+      display:grid;
+      gap:16px;
+    }
+
+    .question,
+    .info-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .question-title{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      margin:0 0 18px;
+      font-size:17px;
+      font-weight:700;
+    }
+
+    .number{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      background:var(--soft);
+      color:var(--primary);
+      font-size:14px;
+      font-weight:800;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .field label{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .field input,
+    .field textarea{
+      width:100%;
+      border:1px solid #d7dce2;
+      border-radius:11px;
+      padding:12px 13px;
+      font:inherit;
+      background:#fff;
+      outline:none;
+      transition:.2s;
+    }
+
+    .field textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 3px rgba(53,92,125,.10);
+    }
+
+    .emoji-scale{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      background:#f3f4f6;
+      border-radius:14px;
+      padding:14px 10px 12px;
+    }
+
+    .emoji-option{
+      position:relative;
+    }
+
+    .emoji-option input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .emoji-option label{
+      min-height:94px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:7px;
+      border:2px solid transparent;
+      border-radius:13px;
+      cursor:pointer;
+      padding:7px 4px;
+      transition:.18s ease;
+      user-select:none;
+    }
+
+    .emoji-option label:hover{
+      background:#fff;
+      transform:translateY(-2px);
+    }
+
+    .emoji{
+      font-size:39px;
+      line-height:1;
+      filter:grayscale(.15);
+    }
+
+    .emoji-label{
+      text-align:center;
+      color:#515862;
+      font-size:12px;
+      line-height:1.35;
+      white-space:normal;
+    }
+
+    .emoji-option input:checked + label{
+      background:#fff;
+      border-color:var(--primary);
+      box-shadow:0 4px 12px rgba(53,92,125,.12);
+    }
+
+    .emoji-option input:focus-visible + label{
+      outline:3px solid rgba(53,92,125,.20);
+      outline-offset:2px;
+    }
+
+    .scale-help{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      padding:4px 0 20px;
+    }
+
+    button{
+      border:0;
+      border-radius:12px;
+      padding:13px 32px;
+      font:inherit;
+      font-weight:800;
+      color:#fff;
+      background:var(--primary);
+      cursor:pointer;
+      transition:.2s;
+      min-width:180px;
+    }
+
+    button:hover{
+      background:var(--primary-dark);
+      transform:translateY(-1px);
+    }
+
+    button:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .footer-note{
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      padding-bottom:12px;
+    }
+
+    .required{color:#b42318}
+
+    @media (max-width:700px){
+      .page{width:min(100% - 18px, 960px); margin:18px auto}
+      .header,.question,.info-card{padding:18px}
+      .info-grid{grid-template-columns:1fr}
+      .emoji-scale{gap:5px;padding:10px 5px}
+      .emoji-option label{min-height:84px}
+      .emoji{font-size:31px}
+      .emoji-label{font-size:11px}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="header">
+      <h1>استبيان رضا المستفيدين</h1>
+      <p>نقدّر رأيك، وستساعدنا إجاباتك على تطوير مستوى الخدمة وتحسين تجربة المستفيدين.</p>
+      <div class="intro">
+        يرجى اختيار الوجه الذي يعبّر عن مستوى رضاك عن كل عبارة.
+      </div>
+    </section>
+
+    <form id="surveyForm"
+          action="https://formsubmit.co/riyadhalebdaa@gmail.com"
+          method="POST">
+
+      <!-- إعدادات FormSubmit -->
+      <input type="hidden" name="_subject" value="نتيجة جديدة - استبيان رضا المستفيدين">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_next" value="https://riyadhalebdaa.github.io/res/thanks.html">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+
+      <section class="info-card">
+        <div class="info-grid">
+          <div class="field">
+            <label for="name">الاسم <span class="required">*</span></label>
+            <input id="name" name="الاسم" type="text" required>
+          </div>
+          <div class="field">
+            <label for="email">البريد الإلكتروني</label>
+            <input id="email" name="البريد الإلكتروني" type="email">
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">1</span> بشكل عام ما مدى رضاك عن مستوى الخدمة؟ <span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="الرضا عن مستوى الخدمة">
+          <div class="emoji-option">
+            <input id="q1-1" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ على الإطلاق" required>
+            <label for="q1-1"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ<br>على الإطلاق</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q1-2" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ">
+            <label for="q1-2"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q1-3" type="radio" name="س1 - مستوى الخدمة" value="محايد">
+            <label for="q1-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q1-4" type="radio" name="س1 - مستوى الخدمة" value="راضٍ">
+            <label for="q1-4"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q1-5" type="radio" name="س1 - مستوى الخدمة" value="راضٍ جدًا">
+            <label for="q1-5"><span class="emoji">😄</span><span class="emoji-label">راضٍ جدًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">2</span> كيف تقيّم سرعة الاستجابة لطلبك؟ <span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="سرعة الاستجابة">
+          <div class="emoji-option">
+            <input id="q2-1" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ على الإطلاق" required>
+            <label for="q2-1"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ<br>على الإطلاق</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q2-2" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ">
+            <label for="q2-2"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q2-3" type="radio" name="س2 - سرعة الاستجابة" value="محايد">
+            <label for="q2-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q2-4" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ">
+            <label for="q2-4"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q2-5" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ جدًا">
+            <label for="q2-5"><span class="emoji">😄</span><span class="emoji-label">راضٍ جدًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">3</span> كيف تقيّم جودة الخدمة المقدمة؟ <span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="جودة الخدمة">
+          <div class="emoji-option">
+            <input id="q3-1" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ على الإطلاق" required>
+            <label for="q3-1"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ<br>على الإطلاق</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q3-2" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ">
+            <label for="q3-2"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q3-3" type="radio" name="س3 - جودة الخدمة" value="محايد">
+            <label for="q3-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q3-4" type="radio" name="س3 - جودة الخدمة" value="راضٍ">
+            <label for="q3-4"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q3-5" type="radio" name="س3 - جودة الخدمة" value="راضٍ جدًا">
+            <label for="q3-5"><span class="emoji">😄</span><span class="emoji-label">راضٍ جدًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">4</span> هل لديك ملاحظات أو اقتراحات تساعدنا على التطوير؟</h2>
+        <div class="field">
+          <textarea name="الملاحظات والاقتراحات" placeholder="اكتب ملاحظتك هنا..."></textarea>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button id="submitBtn" type="submit">إرسال الاستبيان</button>
+      </div>
+    </form>
+
+    <div class="footer-note">جميع الحقول التي تحمل علامة (*) مطلوبة.</div>
+  </main>
+
+  <script>
+    // يمنع الإرسال المتكرر السريع للنموذج.
+    document.getElementById('surveyForm').addEventListener('submit', function () {
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'جارٍ إرسال الاستبيان...';
+    });
+  </script>
+</body>
+</html>
