@@ -45,13 +45,15 @@
 
 .header {
   position: relative;
+  padding-left: 23px;
 }
 
 .header-logo {
   position: absolute;
   top: 20px;
   left: 27px;
-  width: 149px;
+  padding-right: 27px;
+  width: 170px;
   height: auto;
   object-fit: contain;
 }
@@ -271,7 +273,12 @@
 
     @media (max-width:700px){
       .page{width:min(100% - 18px, 960px); margin:18px auto}
-      .header,.question,.info-card{padding:18px}
+      .header{padding-left:105px;}
+      .header-logo {
+    left: 15px;
+    width: 70px;
+  }
+      .question,.info-card{padding:18px}
       .info-grid{grid-template-columns:1fr}
       .emoji-scale{gap:5px;padding:10px 5px}
       .emoji-option label{min-height:84px}
