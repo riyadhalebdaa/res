@@ -309,17 +309,10 @@
 </section>
 
     <form id="surveyForm"
-          action="https://formsubmit.co/riyadhalebdaa@gmail.com"
-          method="POST">
+      action="https://script.google.com/macros/s/AKfycbzDrHkRO7OqsPa80NN-EC_R0JtG_036t6bnAgBUja7ZCGit_qiBeq5ZhJeZjcLKOrI/exec"
+      method="POST">
 
-      <!-- إعدادات FormSubmit -->
-      <input type="hidden" name="_subject" value="نتيجة جديدة - استبيان رضا المستفيدين">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="true">
-      <input type="hidden" name="_next" value="https://riyadhalebdaa.github.io/res/thanks.html">
-      <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
-
-      <section class="info-card">
+<section class="info-card">
         <div class="info-grid">
 <div class="field">
   <label for="name">
@@ -427,13 +420,37 @@
     <div class="footer-note">جميع الحقول التي تحمل علامة (*) مطلوبة.</div>
   </main>
 
-  <script>
-    // يمنع الإرسال المتكرر السريع للنموذج.
-    document.getElementById('surveyForm').addEventListener('submit', function () {
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.textContent = 'جارٍ إرسال الاستبيان...';
-    });
-  </script>
+<script>
+  const form = document.getElementById('surveyForm');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    btn.disabled = true;
+    btn.textContent = 'جارٍ إرسال الاستبيان...';
+
+    const formData = new FormData(form);
+
+    try {
+      await fetch(form.action, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: new URLSearchParams(formData)
+      });
+
+      // الانتقال إلى صفحة الشكر بعد إرسال البيانات
+      window.location.href = 'thanks.html';
+
+    } catch (error) {
+      console.error(error);
+
+      btn.disabled = false;
+      btn.textContent = 'إرسال الاستبيان';
+
+      alert('حدث خطأ أثناء إرسال الاستبيان. يرجى المحاولة مرة أخرى.');
+    }
+  });
+</script>
 </body>
 </html>
