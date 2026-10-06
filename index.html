@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>استبيان رضا المستفيدين</title>
+  <title>استطلاع رأي - مدارس رياض الإبداع</title>
   <meta name="description" content="استبيان رضا المستفيدين باستخدام مقياس الوجوه التعبيرية">
   <style>
     :root{
@@ -61,7 +61,7 @@
 
     .header p{
       margin:0;
-      color:var(--muted);
+      color:#1f2937;
       font-size:15px;
     }
 
@@ -136,13 +136,26 @@
       transition:.2s;
     }
 
+    .field select{
+      width:100%;
+      border:1px solid #d7dce2;
+      border-radius:11px;
+      padding:12px 13px;
+      font:inherit;
+      background:#fff;
+      outline:none;
+      transition:.2s;
+      cursor:pointer;
+    }
+
     .field textarea{
       min-height:110px;
       resize:vertical;
     }
 
     .field input:focus,
-    .field textarea:focus{
+    .field textarea:focus,
+    .field select:focus{
       border-color:var(--primary);
       box-shadow:0 0 0 3px rgba(53,92,125,.10);
     }
@@ -299,8 +312,11 @@
 
     <img src="logo.jpg" alt="شعار مدارس رياض الإبداع" class="header-logo">
 
-    <h1>استبيان رضا المستفيدين</h1>
-  <p>نقدّر رأيك، وستساعدنا إجاباتك على تطوير مستوى الخدمة وتحسين تجربة المستفيدين.</p>
+    <h1>استطلاع رأي</h1>
+  <p>أخي ولي الأمر:</br>
+ السلام عليكم ورحمة الله وبركاته</br>
+ نسعى دائمًا لتقديم الأفضل في مدارسنا -مدارس رياض الإبداع- من خلال تقديم كل ما يحوز رضاكم؛ لذا نأمل منكم المشاركة في هذه الاستبانة والإجابة عليها من واقع تجربتكم؛ للمساهمة في التطوير وتقديم الأفضل لأبنائنا الطلاب، وتحسين مستوياتهم التعليمية..</br>  
+شاكرين لكم تعاونكم</p>
 
   <div class="intro">
     يرجى اختيار الوجه الذي يعبّر عن مستوى رضاك عن كل عبارة.
@@ -324,91 +340,484 @@
             <label for="email">البريد الإلكتروني</label>
             <input id="email" name="البريد الإلكتروني" type="email">
           </div>
+          <div class="field">
+            <label for="stage">المرحلة <span class="required">*</span></label>
+            <select id="stage" name="المرحلة" required>
+              <option value="" selected disabled>اختر المرحلة</option>
+              <option value="المرحلة الابتدائية">المرحلة الابتدائية</option>
+              <option value="المرحلة المتوسطة">المرحلة المتوسطة</option>
+              <option value="المرحلة الثانوية">المرحلة الثانوية</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="grade">صف الطالب <span class="required">*</span></label>
+            <select id="grade" name="صف الطالب" required disabled>
+              <option value="" selected disabled>اختر المرحلة أولًا</option>
+            </select>
+          </div>
         </div>
       </section>
 
       <section class="question">
-        <h2 class="question-title"><span class="number">1</span> بشكل عام ما مدى رضاك عن مستوى الخدمة؟ <span class="required">*</span></h2>
-        <div class="emoji-scale" role="radiogroup" aria-label="الرضا عن مستوى الخدمة">
+        <h2 class="question-title"><span class="number">1</span>تعمل المدرسة على  تطوير المعارف والمهارات الأساسية لدى ابني<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="تطوير المعارف والمهارات">
           <div class="emoji-option">
-            <input id="q1-1" type="radio" name="س1 - مستوى الخدمة" value="راضٍ جدًّا" required>
+            <input id="q1-1" type="radio" name="س1 - تطوير المعارف والمهارات" value="راضٍ جدًّا" required>
             <label for="q1-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q1-2" type="radio" name="س1 - مستوى الخدمة" value="راضٍ">
+            <input id="q1-2" type="radio" name="س1 - تطوير المعارف والمهارات" value="راضٍ">
             <label for="q1-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q1-3" type="radio" name="س1 - مستوى الخدمة" value="محايد">
+            <input id="q1-3" type="radio" name="س1 - تطوير المعارف والمهارات" value="محايد">
             <label for="q1-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q1-4" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ">
+            <input id="q1-4" type="radio" name="س1 - تطوير المعارف والمهارات" value="غير راضٍ">
             <label for="q1-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q1-5" type="radio" name="س1 - مستوى الخدمة" value="غير راضٍ إطلاقًا">
+            <input id="q1-5" type="radio" name="س1 - تطوير المعارف والمهارات" value="غير راضٍ إطلاقًا">
             <label for="q1-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
           </div>
         </div>
       </section>
 
       <section class="question">
-        <h2 class="question-title"><span class="number">2</span> كيف تقيّم سرعة الاستجابة لطلبك؟ <span class="required">*</span></h2>
-        <div class="emoji-scale" role="radiogroup" aria-label="سرعة الاستجابة">
+        <h2 class="question-title"><span class="number">2</span>تلتزم المدرسة بالشفافية في إطْلاعنا على مستويات ابني السلوكية والتحصيلية<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="الإطلاع على مستويات الابن">
           <div class="emoji-option">
-            <input id="q2-1" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ جدًّا" required>
+            <input id="q2-1" type="radio" name="س2 - الإطلاع على مستويات الابن" value="راضٍ جدًّا" required>
             <label for="q2-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q2-2" type="radio" name="س2 - سرعة الاستجابة" value="راضٍ">
+            <input id="q2-2" type="radio" name="س2 - الإطلاع على مستويات الابن" value="راضٍ">
             <label for="q2-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q2-3" type="radio" name="س2 - سرعة الاستجابة" value="محايد">
+            <input id="q2-3" type="radio" name="س2 - الإطلاع على مستويات الابن" value="محايد">
             <label for="q2-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q2-4" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ">
+            <input id="q2-4" type="radio" name="س2 - الإطلاع على مستويات الابن" value="غير راضٍ">
             <label for="q2-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q2-5" type="radio" name="س2 - سرعة الاستجابة" value="غير راضٍ إطلاقًا">
+            <input id="q2-5" type="radio" name="س2 - الإطلاع على مستويات الابن" value="غير راضٍ إطلاقًا">
             <label for="q2-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
           </div>
         </div>
       </section>
 
       <section class="question">
-        <h2 class="question-title"><span class="number">3</span> كيف تقيّم جودة الخدمة المقدمة؟ <span class="required">*</span></h2>
-        <div class="emoji-scale" role="radiogroup" aria-label="جودة الخدمة">
+        <h2 class="question-title"><span class="number">3</span>تتبع المدرسة آليات واضحة وسريعة للاستجابة لاستفساراتنا وملاحظاتنا<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="آليات المدرسة">
           <div class="emoji-option">
-            <input id="q3-1" type="radio" name="س3 - جودة الخدمة" value="راضٍ جدًّا" required>
+            <input id="q3-1" type="radio" name="س3 - آليات المدرسة" value="راضٍ جدًّا" required>
             <label for="q3-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q3-2" type="radio" name="س3 - جودة الخدمة" value="راضٍ">
+            <input id="q3-2" type="radio" name="س3 - آليات المدرسة" value="راضٍ">
             <label for="q3-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q3-3" type="radio" name="س3 - جودة الخدمة" value="محايد">
+            <input id="q3-3" type="radio" name="س3 - آليات المدرسة" value="محايد">
             <label for="q3-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q3-4" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ">
+            <input id="q3-4" type="radio" name="س3 - آليات المدرسة" value="غير راضٍ">
             <label for="q3-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
           </div>
           <div class="emoji-option">
-            <input id="q3-5" type="radio" name="س3 - جودة الخدمة" value="غير راضٍ إطلاقًا">
+            <input id="q3-5" type="radio" name="س3 - آليات المدرسة" value="غير راضٍ إطلاقًا">
             <label for="q3-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
           </div>
         </div>
       </section>
 
       <section class="question">
-        <h2 class="question-title"><span class="number">4</span> هل لديك ملاحظات أو اقتراحات تساعدنا على التطوير؟</h2>
+        <h2 class="question-title"><span class="number">4</span>يعتمد المعلمون على طرق تدريس مشوقة ومتنوعة تراعي الفروق الفردية<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="طرق تدريس المعلمين">
+          <div class="emoji-option">
+            <input id="q4-1" type="radio" name="س4 - طرق تدريس المعلمين" value="راضٍ جدًّا" required>
+            <label for="q4-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q4-2" type="radio" name="س4 - طرق تدريس المعلمين" value="راضٍ">
+            <label for="q4-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q4-3" type="radio" name="س4 - طرق تدريس المعلمين" value="محايد">
+            <label for="q4-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q4-4" type="radio" name="س4 - طرق تدريس المعلمين" value="غير راضٍ">
+            <label for="q4-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q4-5" type="radio" name="س4 - طرق تدريس المعلمين" value="غير راضٍ إطلاقًا">
+            <label for="q4-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">5</span>تُسهم الواجبات والأنشطة المنزلية في تعزيز التعلم دون تشكيل عبء زائد على الأسرة<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="الواجبات والأنشطة المنزلية">
+          <div class="emoji-option">
+            <input id="q5-1" type="radio" name="س5 - الواجبات والأنشطة المنزلية" value="راضٍ جدًّا" required>
+            <label for="q5-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q5-2" type="radio" name="س5 - الواجبات والأنشطة المنزلية" value="راضٍ">
+            <label for="q5-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q5-3" type="radio" name="س5 - الواجبات والأنشطة المنزلية" value="محايد">
+            <label for="q5-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q5-4" type="radio" name="س5 - الواجبات والأنشطة المنزلية" value="غير راضٍ">
+            <label for="q5-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q5-5" type="radio" name="س5 - الواجبات والأنشطة المنزلية" value="غير راضٍ إطلاقًا">
+            <label for="q5-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">6</span>توفر المدرسة الدعم الكافي والتغذية الراجعة لمساعدة الأبناء في تحسين مستواهم الدراسي<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="دعم المدرسة والتغذية الراجعة">
+          <div class="emoji-option">
+            <input id="q6-1" type="radio" name="س6 - دعم المدرسة والتغذية الراجعة" value="راضٍ جدًّا" required>
+            <label for="q6-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q6-2" type="radio" name="س6 - دعم المدرسة والتغذية الراجعة" value="راضٍ">
+            <label for="q6-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q6-3" type="radio" name="س6 - دعم المدرسة والتغذية الراجعة" value="محايد">
+            <label for="q6-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q6-4" type="radio" name="س6 - دعم المدرسة والتغذية الراجعة" value="غير راضٍ">
+            <label for="q6-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q6-5" type="radio" name="س6 - دعم المدرسة والتغذية الراجعة" value="غير راضٍ إطلاقًا">
+            <label for="q6-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">7</span>توفر المدرسة بيئة تعليمية آمنة وصحية ومحفزة للأبناء<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="البيئة التعليمية">
+          <div class="emoji-option">
+            <input id="q7-1" type="radio" name="س7 - البيئة التعليمية" value="راضٍ جدًّا" required>
+            <label for="q7-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q7-2" type="radio" name="س7 - البيئة التعليمية" value="راضٍ">
+            <label for="q7-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q7-3" type="radio" name="س7 - البيئة التعليمية" value="محايد">
+            <label for="q7-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q7-4" type="radio" name="س7 - البيئة التعليمية" value="غير راضٍ">
+            <label for="q7-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q7-5" type="radio" name="س7 - البيئة التعليمية" value="غير راضٍ إطلاقًا">
+            <label for="q7-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">8</span>تهتم المدرسة بضمان أمن وسلامة الأبناء أثناء الحضور والانصراف اليومي<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="أمن وسلامة الأبناء">
+          <div class="emoji-option">
+            <input id="q8-1" type="radio" name="س8 - أمن وسلامة الأبناء" value="راضٍ جدًّا" required>
+            <label for="q8-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q8-2" type="radio" name="س8 - أمن وسلامة الأبناء" value="راضٍ">
+            <label for="q8-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q8-3" type="radio" name="س8 - أمن وسلامة الأبناء" value="محايد">
+            <label for="q8-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q8-4" type="radio" name="س8 - أمن وسلامة الأبناء" value="غير راضٍ">
+            <label for="q8-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q8-5" type="radio" name="س8 - أمن وسلامة الأبناء" value="غير راضٍ إطلاقًا">
+            <label for="q8-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">9</span>تحافظ المدرسة على نظافة المرافق (الفصول، الساحات، المقصف، دورات المياه)<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="نظافة المرافق">
+          <div class="emoji-option">
+            <input id="q9-1" type="radio" name="س9 - نظافة المرافق" value="راضٍ جدًّا" required>
+            <label for="q9-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q9-2" type="radio" name="س9 - نظافة المرافق" value="راضٍ">
+            <label for="q9-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q9-3" type="radio" name="س9 - نظافة المرافق" value="محايد">
+            <label for="q9-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q9-4" type="radio" name="س9 - نظافة المرافق" value="غير راضٍ">
+            <label for="q9-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q9-5" type="radio" name="س9 - نظافة المرافق" value="غير راضٍ إطلاقًا">
+            <label for="q9-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">10</span>تحافظ المدرسة على درجات حرارة مناسبة ومريحة داخل مرافق المدرسة والفصول الدراسية طوال العام<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="درجات الحرارة">
+          <div class="emoji-option">
+            <input id="q10-1" type="radio" name="س10 - درجات الحرارة" value="راضٍ جدًّا" required>
+            <label for="q10-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q10-2" type="radio" name="س10 - درجات الحرارة" value="راضٍ">
+            <label for="q10-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q10-3" type="radio" name="س10 - درجات الحرارة" value="محايد">
+            <label for="q10-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q10-4" type="radio" name="س10 - درجات الحرارة" value="غير راضٍ">
+            <label for="q10-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q10-5" type="radio" name="س10 - درجات الحرارة" value="غير راضٍ إطلاقًا">
+            <label for="q10-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">11</span>تتبع المدرسة إجراءات حازمة وعادلة للحد من مظاهر السلوك السلبي أو التنمر<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="السلوك السلبي أو التنمر">
+          <div class="emoji-option">
+            <input id="q11-1" type="radio" name="س11 - السلوك السلبي أو التنمر" value="راضٍ جدًّا" required>
+            <label for="q11-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q11-2" type="radio" name="س11 - السلوك السلبي أو التنمر" value="راضٍ">
+            <label for="q11-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q11-3" type="radio" name="س11 - السلوك السلبي أو التنمر" value="محايد">
+            <label for="q11-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q11-4" type="radio" name="س11 - السلوك السلبي أو التنمر" value="غير راضٍ">
+            <label for="q11-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q11-5" type="radio" name="س11 - السلوك السلبي أو التنمر" value="غير راضٍ إطلاقًا">
+            <label for="q11-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">12</span>تشجع المدرسة الأبناء على المشاركة في الأنشطة والمسابقات الداخلية والخارجية<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="الأنشطة والمسابقات">
+          <div class="emoji-option">
+            <input id="q12-1" type="radio" name="س12 - الأنشطة والمسابقات" value="راضٍ جدًّا" required>
+            <label for="q12-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q12-2" type="radio" name="س12 - الأنشطة والمسابقات" value="راضٍ">
+            <label for="q12-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q12-3" type="radio" name="س12 - الأنشطة والمسابقات" value="محايد">
+            <label for="q12-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q12-4" type="radio" name="س12 - الأنشطة والمسابقات" value="غير راضٍ">
+            <label for="q12-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q12-5" type="radio" name="س12 - الأنشطة والمسابقات" value="غير راضٍ إطلاقًا">
+            <label for="q12-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">13</span>تتميز مدارسنا بالأنشطة الهادفة والبرامج النوعية والذي يمتد منها خارج أسوار المدرسة كالزيارات والرحلات والمشاركات المجتمعية<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="الأنشطة الهادفة والبرامج النوعية">
+          <div class="emoji-option">
+            <input id="q13-1" type="radio" name="س13 - الأنشطة الهادفة والبرامج النوعية" value="راضٍ جدًّا" required>
+            <label for="q13-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q13-2" type="radio" name="س13 - الأنشطة الهادفة والبرامج النوعية" value="راضٍ">
+            <label for="q13-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q13-3" type="radio" name="س13 - الأنشطة الهادفة والبرامج النوعية" value="محايد">
+            <label for="q13-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q13-4" type="radio" name="س13 - الأنشطة الهادفة والبرامج النوعية" value="غير راضٍ">
+            <label for="q13-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q13-5" type="radio" name="س13 - الأنشطة الهادفة والبرامج النوعية" value="غير راضٍ إطلاقًا">
+            <label for="q13-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">14</span>تقدم المدرسة برامج ملموسة لرعاية الطلاب الموهوبين ودعم الطلاب المتعثرين<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="رعاية الموهوبين ودعم المتعثرين">
+          <div class="emoji-option">
+            <input id="q14-1" type="radio" name="س14 - رعاية الموهوبين ودعم المتعثرين" value="راضٍ جدًّا" required>
+            <label for="q14-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q14-2" type="radio" name="س14 - رعاية الموهوبين ودعم المتعثرين" value="راضٍ">
+            <label for="q14-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q14-3" type="radio" name="س14 - رعاية الموهوبين ودعم المتعثرين" value="محايد">
+            <label for="q14-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q14-4" type="radio" name="س14 - رعاية الموهوبين ودعم المتعثرين" value="غير راضٍ">
+            <label for="q14-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q14-5" type="radio" name="س14 - رعاية الموهوبين ودعم المتعثرين" value="غير راضٍ إطلاقًا">
+            <label for="q14-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">15</span>تساهم المدرسة في تعزيز القيم الإسلامية والوطنية، وتحمل المسؤولية لدى الأبناء<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="القيم الإسلامية والوطنية وتحمل المسؤولية">
+          <div class="emoji-option">
+            <input id="q15-1" type="radio" name="س15 - القيم الإسلامية والوطنية وتحمل المسؤولية" value="راضٍ جدًّا" required>
+            <label for="q15-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q15-2" type="radio" name="س15 - القيم الإسلامية والوطنية وتحمل المسؤولية" value="راضٍ">
+            <label for="q15-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q15-3" type="radio" name="س15 - القيم الإسلامية والوطنية وتحمل المسؤولية" value="محايد">
+            <label for="q15-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q15-4" type="radio" name="س15 - القيم الإسلامية والوطنية وتحمل المسؤولية" value="غير راضٍ">
+            <label for="q15-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q15-5" type="radio" name="س15 - القيم الإسلامية والوطنية وتحمل المسؤولية" value="غير راضٍ إطلاقًا">
+            <label for="q15-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">16</span>يلبي تطبيق مقصفي حاجة الطلاب من المشتريات في المقصف المدرسي<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="تطبيق مقصفي">
+          <div class="emoji-option">
+            <input id="q16-1" type="radio" name="س16 - تطبيق مقصفي" value="راضٍ جدًّا" required>
+            <label for="q16-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q16-2" type="radio" name="س16 - تطبيق مقصفي" value="راضٍ">
+            <label for="q16-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q16-3" type="radio" name="س16 - تطبيق مقصفي" value="محايد">
+            <label for="q16-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q16-4" type="radio" name="س16 - تطبيق مقصفي" value="غير راضٍ">
+            <label for="q16-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q16-5" type="radio" name="س16 - تطبيق مقصفي" value="غير راضٍ إطلاقًا">
+            <label for="q16-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">17</span>توفر المدرسة النقل المدرسي المناسب لمن يرغب من الطلاب<span class="required">*</span></h2>
+        <div class="emoji-scale" role="radiogroup" aria-label="النقل المدرسي">
+          <div class="emoji-option">
+            <input id="q17-1" type="radio" name="س17 - النقل المدرسي" value="راضٍ جدًّا" required>
+            <label for="q17-1"><span class="emoji">😃</span><span class="emoji-label">راضٍ جدًّا</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q17-2" type="radio" name="س17 - النقل المدرسي" value="راضٍ">
+            <label for="q17-2"><span class="emoji">🙂</span><span class="emoji-label">راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q17-3" type="radio" name="س17 - النقل المدرسي" value="محايد">
+            <label for="q17-3"><span class="emoji">😐</span><span class="emoji-label">محايد</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q17-4" type="radio" name="س17 - النقل المدرسي" value="غير راضٍ">
+            <label for="q17-4"><span class="emoji">🙁</span><span class="emoji-label">غير راضٍ</span></label>
+          </div>
+          <div class="emoji-option">
+            <input id="q17-5" type="radio" name="س17 - النقل المدرسي" value="غير راضٍ إطلاقًا">
+            <label for="q17-5"><span class="emoji">😞</span><span class="emoji-label">غير راضٍ إطلاقًا</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">18</span>ما هي أهم الإيجابيات التي لاحظتها في مدارس رياض الإبداع؟</h2>
         <div class="field">
-          <textarea name="الملاحظات والاقتراحات" placeholder="اكتب ملاحظتك هنا..."></textarea>
+          <textarea name="س18 - أهم الإيجابيات" placeholder="اكتب إجابتك هنا..."></textarea>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">19</span>ما الجانب الذي ترى أن المدرسة بحاجة إلى تطويره؟</h2>
+        <div class="field">
+          <textarea name="س19 - الجانب الذي يحتاج إلى تطوير" placeholder="اكتب إجابتك هنا..."></textarea>
+        </div>
+      </section>
+
+      <section class="question">
+        <h2 class="question-title"><span class="number">20</span>أمور أخرى تحب ذكرها</h2>
+        <div class="field">
+          <textarea name="س20 - أمور أخرى" placeholder="اكتب إجابتك هنا..."></textarea>
         </div>
       </section>
 
@@ -421,6 +830,48 @@
   </main>
 
 <script>
+  // ربط قائمة "صف الطالب" باختيار "المرحلة"
+  const stageSelect = document.getElementById('stage');
+  const gradeSelect = document.getElementById('grade');
+
+  const gradeOptions = {
+    'المرحلة الابتدائية': [
+      'الصف الأول الابتدائي',
+      'الصف الثاني الابتدائي',
+      'الصف الثالث الابتدائي',
+      'الصف الرابع الابتدائي',
+      'الصف الخامس الابتدائي',
+      'الصف السادس الابتدائي'
+    ],
+    'المرحلة المتوسطة': [
+      'الصف الأول المتوسط',
+      'الصف الثاني المتوسط',
+      'الصف الثالث المتوسط'
+    ],
+    'المرحلة الثانوية': [
+      'الصف الأول الثانوي'
+    ]
+  };
+
+  stageSelect.addEventListener('change', function () {
+    const selectedStage = this.value;
+
+    gradeSelect.innerHTML = '<option value="" selected disabled>اختر صف الطالب</option>';
+
+    if (gradeOptions[selectedStage]) {
+      gradeOptions[selectedStage].forEach(function (grade) {
+        const option = document.createElement('option');
+        option.value = grade;
+        option.textContent = grade;
+        gradeSelect.appendChild(option);
+      });
+
+      gradeSelect.disabled = false;
+    } else {
+      gradeSelect.disabled = true;
+    }
+  });
+
   const form = document.getElementById('surveyForm');
   const btn = document.getElementById('submitBtn');
 
