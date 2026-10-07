@@ -356,6 +356,29 @@
       transform:none;
     }
 
+    .validation-message{
+      display:none;
+      width:min(680px, 100%);
+      margin:-4px auto 18px;
+      padding:11px 15px;
+      border:1px solid #f0caca;
+      border-radius:11px;
+      background:#fff6f6;
+      color:#9b1c1c;
+      font-size:13px;
+      font-weight:500;
+      text-align:center;
+    }
+
+    .validation-message.show{
+      display:block;
+    }
+
+    .validation-target{
+      border-color:#d99a9a !important;
+      box-shadow:0 0 0 3px rgba(180,35,24,.08), var(--shadow) !important;
+    }
+
     .footer-note{
       text-align:center;
       color:var(--muted);
@@ -506,7 +529,7 @@
 
     <form id="surveyForm"
       action="https://script.google.com/macros/s/AKfycbzX6-nAQinrsJMyUC6cHePUJOaSxqk75j3LNwZQm3WLw6bsD44f_JQPc9FPAVc15Zo/exec"
-      method="POST">
+      method="POST" novalidate>
 
 <section class="info-card">
         <div class="info-grid">
@@ -1004,6 +1027,8 @@
       <div class="actions">
         <button id="submitBtn" type="submit">إرسال الاستبيان</button>
       </div>
+
+      <div id="validationMessage" class="validation-message" role="alert" aria-live="polite"></div>
     </form>
 
     <div class="footer-note">جميع الحقول التي تحمل علامة (*) مطلوبة.</div>
@@ -1054,9 +1079,110 @@
 
   const form = document.getElementById('surveyForm');
   const btn = document.getElementById('submitBtn');
+  const validationMessage = document.getElementById('validationMessage');
+
+  function clearValidationState() {
+    validationMessage.classList.remove('show');
+    validationMessage.textContent = '';
+
+    form.querySelectorAll('.validation-target').forEach(function (element) {
+      element.classList.remove('validation-target');
+    });
+  }
+
+  function findFirstMissingRequiredField() {
+    const requiredFields = Array.from(
+      form.querySelectorAll('input[required], select[required], textarea[required]')
+    );
+
+    const checkedRadioGroups = new Set();
+
+    for (const field of requiredFields) {
+
+      // التعامل مع أسئلة الوجوه التعبيرية (radio) كمجموعة واحدة.
+      if (field.type === 'radio') {
+        if (checkedRadioGroups.has(field.name)) {
+          continue;
+        }
+
+        checkedRadioGroups.add(field.name);
+
+        const group = Array.from(
+          form.querySelectorAll('input[type="radio"]')
+        ).filter(function (radio) {
+          return radio.name === field.name;
+        });
+
+        if (!group.some(function (radio) { return radio.checked; })) {
+          return {
+            field: group[0],
+            target: group[0].closest('.question, .info-card') || group[0]
+          };
+        }
+
+        continue;
+      }
+
+      // التعامل مع select و input و textarea.
+      if (!String(field.value || '').trim()) {
+        return {
+          field: field,
+          target: field.closest('.question, .info-card') || field
+        };
+      }
+    }
+
+    return null;
+  }
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
+
+    clearValidationState();
+
+    const missing = findFirstMissingRequiredField();
+
+    if (missing) {
+      const target = missing.target;
+      target.classList.add('validation-target');
+
+      const questionNumber = target.querySelector('.number');
+
+      if (questionNumber) {
+        validationMessage.textContent =
+          '⚠️ يرجى الإجابة عن السؤال رقم ' +
+          questionNumber.textContent +
+          ' قبل إرسال الاستبيان.';
+      } else if (missing.field.id === 'stage') {
+        validationMessage.textContent =
+          '⚠️ يرجى اختيار المرحلة قبل إرسال الاستبيان.';
+      } else if (missing.field.id === 'grade') {
+        validationMessage.textContent =
+          '⚠️ يرجى اختيار صف الطالب قبل إرسال الاستبيان.';
+      } else {
+        validationMessage.textContent =
+          '⚠️ يرجى إكمال الحقول المطلوبة قبل إرسال الاستبيان.';
+      }
+
+      validationMessage.classList.add('show');
+
+      // التحرك تلقائيًا إلى أول سؤال/حقل مطلوب غير مكتمل.
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+      // تركيز بسيط على أول عنصر في الحقل المطلوب دون تغيير موضع الصفحة.
+      setTimeout(function () {
+        try {
+          missing.field.focus({ preventScroll: true });
+        } catch (focusError) {
+          console.debug(focusError);
+        }
+      }, 450);
+
+      return;
+    }
 
     btn.disabled = true;
     btn.textContent = 'جارٍ إرسال الاستبيان...';
