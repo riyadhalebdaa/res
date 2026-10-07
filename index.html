@@ -6,6 +6,8 @@
   <title>استطلاع رأي - مدارس رياض الإبداع</title>
   <meta name="description" content="استبيان رضا المستفيدين باستخدام مقياس الوجوه التعبيرية">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+    
     :root{
       --bg:#f5f7fa;
       --card:#ffffff;
@@ -25,7 +27,7 @@
       margin:0;
       background:var(--bg);
       color:var(--text);
-      font-family:"Tahoma","Segoe UI",Arial,sans-serif;
+      font-family:"Tajawal","Segoe UI",Arial,sans-serif;
       line-height:1.7;
     }
 
@@ -36,43 +38,127 @@
 
     .header{
       position:relative;
-      background:var(--card);
+      overflow:hidden;
+      background:
+        linear-gradient(135deg, rgba(240,244,248,.72) 0%, rgba(255,255,255,1) 42%),
+        var(--card);
       border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:30px 28px 24px 145px;
-      box-shadow:var(--shadow);
+      border-radius:22px;
+      padding:28px 32px 24px;
+      box-shadow:0 14px 36px rgba(31,41,55,.08);
       margin-bottom:20px;
     }
 
-    .header-logo{
+    .header::before{
+      content:"";
       position:absolute;
-      top:20px;
-      left:24px;
-      width:100px;
-      height:auto;
+      top:0;
+      right:0;
+      left:0;
+      height:4px;
+      background:linear-gradient(90deg, #355c7d 0%, #6f8ea6 48%, #d8e1e8 100%);
+    }
+
+      .header-top{
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+      direction:rtl;
+      padding:4px 2px 22px;
+      margin-bottom:18px;
+      border-bottom:1px solid #edf0f3;
+    }
+    
+    .header-logo-wrap{
+      flex:0 0 auto;
+      width:127px;
+      min-width:127px;
+      height:116px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#fff;
+      border:0px solid #edf0f3;
+      border-radius:20px;
+      padding:0px;
+    }
+
+    .header-logo{
+      display:block;
+      width:100%;
+      height:100%;
       object-fit:contain;
     }
 
-    .header h1{
-      margin:0 0 8px;
-      font-size:clamp(24px, 4vw, 34px);
-      font-weight:800;
+    .header-title-wrap{
+      flex:1 1 auto;
+      min-width:0;
+      text-align:right;
+      padding:2px 0;
     }
 
-    .header p{
+    .header h1{
+      position:relative;
+      display:inline-block;
       margin:0;
+      color:#172433;
+      font-size:clamp(28px,4vw,40px);
+      font-weight:800;
+      line-height:1.2;
+      letter-spacing:-.3px;
+    }
+
+    .header h1::after{
+      content:"";
+      display:block;
+      width:58px;
+      height:4px;
+      margin-top:11px;
+      border-radius:999px;
+      background:#355c7d;
+    }
+
+    .header .greeting{
+      margin:0 0 10px;
+      color:#283340;
+      font-size:15px;
+      font-weight:500;
+      line-height:1.9;
+      text-align:right;
+    }
+
+    .header .main-description{
+      margin:0 auto;
       color:#1f2937;
       font-size:15px;
+      line-height:2;
+      max-width:900px;
+      text-align:justify;
+      text-align-last:right;
+    }
+
+    .header .thanks{
+      margin:15px 0 0;
+      color:#355c7d;
+      font-size:15px;
+      font-weight:700;
+      text-align:center;
     }
 
     .intro{
-      margin-top:18px;
-      padding:14px 16px;
-      background:var(--soft);
-      border-radius:12px;
+      margin-top:20px;
+      padding:14px 18px;
+      background:#f2f5f8;
+      border:1px solid #edf0f3;
+      border-radius:14px;
       color:#4b5563;
       font-size:14px;
+      font-weight:500;
+      text-align:center;
     }
+
 
     form{
       display:grid;
@@ -280,22 +366,102 @@
     .required{color:#b42318}
 
     @media (max-width:700px){
-      .page{width:min(100% - 18px, 960px); margin:18px auto}
-      .header,.question,.info-card{padding:18px}
+      .page{
+        width:min(100% - 18px, 960px);
+        margin:18px auto;
+      }
+
       .header{
-        padding-left:92px;
+        padding:21px 16px 18px;
+        border-radius:18px;
       }
-      .header-logo{
-        top:14px;
-        left:12px;
-        width:64px;
+
+      .header-top{
+        gap:15px;
+        padding:2px 0 16px;
+        margin-bottom:15px;
       }
-      .info-grid{grid-template-columns:1fr}
-      .emoji-scale{gap:5px;padding:10px 5px}
-      .emoji-option label{min-height:84px}
-      .emoji{font-size:31px}
-      .emoji-label{font-size:11px}
+
+      .header-logo-wrap{
+        width:72px;
+        min-width:72px;
+        height:72px;
+        border-radius:15px;
+        padding:7px;
+      }
+
+      .header h1{
+        font-size:clamp(24px,7vw,31px);
+      }
+
+      .header h1::after{
+        width:42px;
+        height:3px;
+        margin-top:8px;
+      }
+
+      .header .greeting,
+      .header .main-description,
+      .header .thanks{
+        font-size:14px;
+      }
+
+      .header .main-description{
+        line-height:1.95;
+      }
+
+      .intro{
+        margin-top:17px;
+        padding:12px 13px;
+        font-size:13px;
+      }
+
+      .info-grid{
+        grid-template-columns:1fr;
+      }
+
+      .emoji-scale{
+        gap:5px;
+        padding:10px 5px;
+      }
+
+      .emoji-option label{
+        min-height:84px;
+      }
+
+      .emoji{
+        font-size:31px;
+      }
+
+      .emoji-label{
+        font-size:11px;
+      }
     }
+
+    @media (max-width:390px){
+      .header-top{
+        gap:11px;
+      }
+
+      .header-logo-wrap{
+        width:62px;
+        min-width:62px;
+        height:62px;
+        border-radius:13px;
+        padding:6px;
+      }
+
+      .header h1{
+        font-size:23px;
+      }
+
+      .header .main-description{
+        font-size:13px;
+        line-height:1.9;
+      }
+    }
+
+
 
     .optional {
   color: #8a8f98;
@@ -310,17 +476,31 @@
   <main class="page">
 <section class="header">
 
-    <img src="logo.jpg" alt="شعار مدارس رياض الإبداع" class="header-logo">
 
-    <h1>استطلاع رأي</h1>
-  <p>أخي ولي الأمر:</br>
- السلام عليكم ورحمة الله وبركاته</br>
- نسعى دائمًا لتقديم الأفضل في مدارسنا -مدارس رياض الإبداع- من خلال تقديم كل ما يحوز رضاكم؛ لذا نأمل منكم المشاركة في هذه الاستبانة والإجابة عليها من واقع تجربتكم؛ للمساهمة في التطوير وتقديم الأفضل لأبنائنا الطلاب، وتحسين مستوياتهم التعليمية..</br>  
-شاكرين لكم تعاونكم</p>
+      <div class="header-top">
 
-  <div class="intro">
-    يرجى اختيار الوجه الذي يعبّر عن مستوى رضاك عن كل عبارة.
-  </div>
+        <div class="header-logo-wrap">
+          <img src="logo.jpg" alt="شعار مدارس رياض الإبداع" class="header-logo">
+        </div>
+
+        <div class="header-title-wrap">
+          <h1>استطلاع رأي</h1>
+        </div>
+
+      </div>
+
+      <p class="greeting">أخي ولي الأمر<br>
+      السلام عليكم ورحمة الله وبركاته</p>
+
+      <p class="main-description">
+        نسعى دائمًا لتقديم الأفضل في مدارسنا -مدارس رياض الإبداع- من خلال تقديم كل ما يحوز رضاكم؛ لذا نأمل منكم المشاركة في هذه الاستبانة والإجابة عليها من واقع تجربتكم؛ للمساهمة في التطوير وتقديم الأفضل لأبنائنا الطلاب، وتحسين مستوياتهم التعليمية..
+      </p>
+
+      <p class="thanks">شاكرين لكم تعاونكم</p>
+
+      <div class="intro">
+        يرجى اختيار الوجه الذي يعبّر عن مستوى رضاك عن كل عبارة
+      </div>
 
 </section>
 
@@ -815,7 +995,7 @@
       </section>
 
       <section class="question">
-        <h2 class="question-title"><span class="number">20</span>أمور أخرى تحب ذكرها</h2>
+        <h2 class="question-title"><span class="number">20</span>أمور أخرى تحب ذكرها..</h2>
         <div class="field">
           <textarea name="س20 - أمور أخرى" placeholder="اكتب إجابتك هنا..."></textarea>
         </div>
