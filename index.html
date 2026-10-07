@@ -1094,9 +1094,11 @@
 
         checkedRadioGroups.add(field.name);
 
-        const group = requiredFields.filter(
-          item => item.type === 'radio' && item.name === field.name
-        );
+        // ملاحظة: الخاصية required موجودة على أول زر فقط في كل مجموعة،
+        // لذلك يجب البحث في جميع أزرار المجموعة وليس في requiredFields فقط.
+        const group = Array.from(
+          form.querySelectorAll('input[type="radio"]')
+        ).filter(item => item.name === field.name);
 
         if (!group.some(radio => radio.checked)) {
           return {
