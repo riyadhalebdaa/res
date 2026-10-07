@@ -124,7 +124,7 @@
       margin:0 0 10px;
       color:#283340;
       font-size:15px;
-      font-weight:500;
+      font-weight:400;
       line-height:1.9;
       text-align:right;
     }
@@ -133,6 +133,7 @@
       margin:0 auto;
       color:#1f2937;
       font-size:15px;
+      font-weight:400;
       line-height:2;
       max-width:900px;
       text-align:justify;
@@ -359,8 +360,8 @@
     .validation-message{
       display:none;
       width:min(680px, 100%);
-      margin:-4px auto 18px;
-      padding:11px 15px;
+      margin:0 auto 10px;
+      padding:10px 14px;
       border:1px solid #f0caca;
       border-radius:11px;
       background:#fff6f6;
@@ -372,11 +373,6 @@
 
     .validation-message.show{
       display:block;
-    }
-
-    .validation-target{
-      border-color:#d99a9a !important;
-      box-shadow:0 0 0 3px rgba(180,35,24,.08), var(--shadow) !important;
     }
 
     .footer-note{
@@ -1024,11 +1020,11 @@
         </div>
       </section>
 
+      <div id="validationMessage" class="validation-message" role="alert" aria-live="polite"></div>
+
       <div class="actions">
         <button id="submitBtn" type="submit">إرسال الاستبيان</button>
       </div>
-
-      <div id="validationMessage" class="validation-message" role="alert" aria-live="polite"></div>
     </form>
 
     <div class="footer-note">جميع الحقول التي تحمل علامة (*) مطلوبة.</div>
@@ -1081,15 +1077,8 @@
   const btn = document.getElementById('submitBtn');
   const validationMessage = document.getElementById('validationMessage');
 
-  function clearValidationState() {
-    validationMessage.classList.remove('show');
-    validationMessage.textContent = '';
-
-    form.querySelectorAll('.validation-target').forEach(function (element) {
-      element.classList.remove('validation-target');
-    });
-  }
-
+  // التحقق من جميع الحقول المطلوبة بالترتيب الظاهر في الصفحة.
+  // عند وجود أكثر من حقل ناقص، يتم الانتقال إلى أول حقل ناقص فقط.
   function findFirstMissingRequiredField() {
     const requiredFields = Array.from(
       form.querySelectorAll('input[required], select[required], textarea[required]')
@@ -1098,8 +1087,6 @@
     const checkedRadioGroups = new Set();
 
     for (const field of requiredFields) {
-
-      // التعامل مع أسئلة الوجوه التعبيرية (radio) كمجموعة واحدة.
       if (field.type === 'radio') {
         if (checkedRadioGroups.has(field.name)) {
           continue;
@@ -1107,24 +1094,17 @@
 
         checkedRadioGroups.add(field.name);
 
-        const group = Array.from(
-          form.querySelectorAll('input[type="radio"]')
-        ).filter(function (radio) {
-          return radio.name === field.name;
-        });
+        const group = requiredFields.filter(
+          item => item.type === 'radio' && item.name === field.name
+        );
 
-        if (!group.some(function (radio) { return radio.checked; })) {
+        if (!group.some(radio => radio.checked)) {
           return {
             field: group[0],
             target: group[0].closest('.question, .info-card') || group[0]
           };
         }
-
-        continue;
-      }
-
-      // التعامل مع select و input و textarea.
-      if (!String(field.value || '').trim()) {
+      } else if (!field.value.trim()) {
         return {
           field: field,
           target: field.closest('.question, .info-card') || field
@@ -1138,21 +1118,19 @@
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    clearValidationState();
+    // إخفاء التنبيه السابق.
+    validationMessage.classList.remove('show');
+    validationMessage.textContent = '';
 
     const missing = findFirstMissingRequiredField();
 
     if (missing) {
       const target = missing.target;
-      target.classList.add('validation-target');
+      const number = target.querySelector('.number');
 
-      const questionNumber = target.querySelector('.number');
-
-      if (questionNumber) {
+      if (number) {
         validationMessage.textContent =
-          '⚠️ يرجى الإجابة عن السؤال رقم ' +
-          questionNumber.textContent +
-          ' قبل إرسال الاستبيان.';
+          `⚠️ يرجى الإجابة عن السؤال رقم ${number.textContent} قبل إرسال الاستبيان.`;
       } else if (missing.field.id === 'stage') {
         validationMessage.textContent =
           '⚠️ يرجى اختيار المرحلة قبل إرسال الاستبيان.';
@@ -1166,20 +1144,23 @@
 
       validationMessage.classList.add('show');
 
-      // التحرك تلقائيًا إلى أول سؤال/حقل مطلوب غير مكتمل.
+      // التحرك تلقائيًا إلى أول سؤال/حقل مطلوب لم تتم الإجابة عنه.
       target.scrollIntoView({
         behavior: 'smooth',
         block: 'center'
       });
 
-      // تركيز بسيط على أول عنصر في الحقل المطلوب دون تغيير موضع الصفحة.
+      // تركيز العنصر دون إعادة تحريك الصفحة.
       setTimeout(function () {
         try {
           missing.field.focus({ preventScroll: true });
-        } catch (focusError) {
-          console.debug(focusError);
+        } catch (error) {
+          // بعض المتصفحات قد لا تدعم preventScroll؛ لا نوقف الاستبيان بسببه.
+          try {
+            missing.field.focus();
+          } catch (_) {}
         }
-      }, 450);
+      }, 400);
 
       return;
     }
